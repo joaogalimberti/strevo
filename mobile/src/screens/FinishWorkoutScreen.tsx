@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ActivityIndicator, ScrollView, Image } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ActivityIndicator, ScrollView, Image, Alert } from 'react-native';
 import { useStore } from '../store/useStore';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { api } from '../config/api';
 import * as ImagePicker from 'expo-image-picker';
+import * as ImageManipulator from 'expo-image-manipulator';
 import { Camera, Image as ImageIcon } from 'lucide-react-native';
 
 const MAIN_TYPES = ['Gym', 'Running', 'Yoga', 'Cycling', 'Other'];
@@ -23,31 +24,51 @@ export default function FinishWorkoutScreen() {
 
   const pickImage = async (useCamera = false) => {
     let result;
-    if (useCamera) {
-      const { status } = await ImagePicker.requestCameraPermissionsAsync();
-      if (status !== 'granted') return alert('Sorry, we need camera permissions to make this work!');
-      result = await ImagePicker.launchCameraAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.Images,
-        allowsEditing: true,
-        aspect: [9, 16],
-        quality: 0.5,
-        base64: true,
-      });
-    } else {
-      const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-      if (status !== 'granted') return alert('Sorry, we need camera roll permissions to make this work!');
-      result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.Images,
-        allowsEditing: true,
-        aspect: [9, 16],
-        quality: 0.5,
-        base64: true,
-      });
-    }
+    try {
+      if (useCamera) {
+        const { status } = await ImagePicker.requestCameraPermissionsAsync();
+        if (status !== 'granted') {
+          Alert.alert('Permission Denied', 'Sorry, we need camera permissions to make this work!');
+          return;
+        }
+        result = await ImagePicker.launchCameraAsync({
+          mediaTypes: ['images'],
+          allowsEditing: true,
+          aspect: [9, 16],
+          quality: 1,
+        });
+      } else {
+        const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+        if (status !== 'granted') {
+          Alert.alert('Permission Denied', 'Sorry, we need gallery permissions to make this work!');
+          return;
+        }
+        result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ['images'],
+          allowsEditing: true,
+          aspect: [9, 16],
+          quality: 1,
+        });
+      }
 
-    if (!result.canceled && result.assets[0].base64) {
-      setPhotoUri(result.assets[0].uri);
-      setPhotoBase64(result.assets[0].base64);
+      if (!result.canceled && result.assets[0].uri) {
+        setLoading(true);
+        // Optimize image: resize to 1080px width (portrait) and compress to 70% quality
+        // This significantly reduces the payload size for Axios/NestJS
+        const manipulated = await ImageManipulator.manipulateAsync(
+          result.assets[0].uri,
+          [{ resize: { width: 1080 } }],
+          { compress: 0.7, format: ImageManipulator.SaveFormat.JPEG, base64: true }
+        );
+
+        setPhotoUri(manipulated.uri);
+        setPhotoBase64(manipulated.base64 || null);
+      }
+    } catch (e) {
+      console.log(e);
+      Alert.alert('Error', 'Failed to pick or process image.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -61,13 +82,20 @@ export default function FinishWorkoutScreen() {
         duration,
         type: finalType
       });
+      
       finishWorkout();
-      navigation.navigate('StoryPreview', { workoutId: workout.id, photoBase64 });
-    } catch (e) {
+      // Pass the optimized base64 to the preview screen
+      navigation.navigate('StoryPreview', { 
+        workoutId: workout.id, 
+        photoBase64 
+      });
+    } catch (e: any) {
       console.log(e);
-      alert('Failed to save workout');
+      const errorMsg = e.response?.status === 413 ? 'Image too large. Please try a different photo.' : 'Failed to save workout.';
+      Alert.alert('Error', errorMsg);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (
@@ -123,11 +151,11 @@ export default function FinishWorkoutScreen() {
           </View>
         ) : (
           <>
-            <TouchableOpacity style={styles.photoBtn} onPress={() => pickImage(true)}>
+            <TouchableOpacity style={styles.photoBtn} onPress={() => pickImage(true)} disabled={loading}>
               <Camera color="#888" size={24} />
               <Text style={styles.photoBtnText}>Take Photo</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.photoBtn} onPress={() => pickImage(false)}>
+            <TouchableOpacity style={styles.photoBtn} onPress={() => pickImage(false)} disabled={loading}>
               <ImageIcon color="#888" size={24} />
               <Text style={styles.photoBtnText}>Gallery</Text>
             </TouchableOpacity>

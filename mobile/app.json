@@ -1,28 +1,58 @@
 {
   "expo": {
-    "name": "mobile",
-    "slug": "mobile",
+    "name": "STREVO",
+    "slug": "strevo",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "dark",
     "newArchEnabled": true,
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#0A0A0A"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.strevo.app",
+      "infoPlist": {
+        "NSCameraUsageDescription": "STREVO needs access to your camera to take workout photos.",
+        "NSPhotoLibraryUsageDescription": "STREVO needs access to your gallery to save and share your workout stories.",
+        "NSPhotoLibraryAddUsageDescription": "STREVO needs access to your gallery to save your generated stories."
+      }
     },
     "android": {
+      "package": "com.strevo.app",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#0A0A0A"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "permissions": [
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "ACCESS_MEDIA_LOCATION"
+      ]
     },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Allow STREVO to access your photos",
+          "cameraPermission": "Allow STREVO to use your camera"
+        }
+      ],
+      [
+        "expo-media-library",
+        {
+          "photosPermission": "Allow STREVO to save images to your gallery.",
+          "savePhotosPermission": "Allow STREVO to save images to your gallery.",
+          "isStandAlone": true
+        }
+      ],
+      "expo-dev-client"
+    ],
     "web": {
       "favicon": "./assets/favicon.png",
       "bundler": "metro"
