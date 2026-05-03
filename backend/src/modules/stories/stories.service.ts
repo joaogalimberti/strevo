@@ -29,7 +29,7 @@ export class StoriesService {
     let hasPhoto = false;
     if (photoBase64) {
       try {
-        const image = await loadImage(`data:image/jpeg;base64,${photoBase64}`);
+        const image = await loadImage(Buffer.from(photoBase64, 'base64'));
         
         // cover image (center crop)
         const scale = Math.max(1080 / image.width, 1920 / image.height);
