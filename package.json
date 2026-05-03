@@ -1,0 +1,16 @@
+{
+  "name": "strevo-root",
+  "version": "1.0.0",
+  "description": "STREVO MVP Root",
+  "scripts": {
+    "postinstall": "npm run install:backend && npm run install:mobile",
+    "install:backend": "cd backend && npm install",
+    "install:mobile": "cd mobile && npm install",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:mobile\"",
+    "dev:backend": "cd backend && npm run start:dev",
+    "dev:mobile": "cd mobile && npx expo start"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

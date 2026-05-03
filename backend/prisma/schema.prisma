@@ -1,0 +1,50 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id           String    @id @default(uuid())
+  username     String    @unique
+  email        String    @unique
+  passwordHash String
+  createdAt    DateTime  @default(now())
+  workouts     Workout[]
+  streak       Streak?
+  stories      Story[]
+}
+
+model Workout {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  startTime DateTime
+  endTime   DateTime
+  duration  Int      // in seconds
+  type      String   // e.g., 'running', 'gym', etc.
+  stories   Story[]
+  createdAt DateTime @default(now())
+}
+
+model Streak {
+  id              String   @id @default(uuid())
+  userId          String   @unique
+  user            User     @relation(fields: [userId], references: [id])
+  currentStreak   Int      @default(0)
+  bestStreak      Int      @default(0)
+  lastWorkoutDate DateTime @default(now())
+}
+
+model Story {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  workoutId String
+  workout   Workout  @relation(fields: [workoutId], references: [id])
+  imageUrl  String
+  createdAt DateTime @default(now())
+}
