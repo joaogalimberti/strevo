@@ -5,6 +5,7 @@ import { useStore } from '../store/useStore';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { api } from '../config/api';
 import { User, Calendar, Activity, Play } from 'lucide-react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const MOTIVATIONS = [
   "You showed up yesterday. Let's go again.",
@@ -84,7 +85,12 @@ export default function HomeScreen() {
         </View>
 
         {/* STREAK CARD */}
-        <View style={styles.streakCard}>
+        <LinearGradient 
+          colors={['#FF007F', '#7000FF']} 
+          start={{ x: 0, y: 0 }} 
+          end={{ x: 1, y: 1 }} 
+          style={styles.streakCard}
+        >
           <View style={styles.streakInfo}>
             <Text style={styles.streakNumber}>{streak}</Text>
             <View>
@@ -92,7 +98,7 @@ export default function HomeScreen() {
               <Text style={styles.streakSub}>Don't break it today.</Text>
             </View>
           </View>
-        </View>
+        </LinearGradient>
 
         {/* WEEKLY PROGRESS */}
         <View style={styles.weeklyContainer}>
@@ -150,9 +156,9 @@ const styles = StyleSheet.create({
   headerIcons: { flexDirection: 'row', gap: 15 },
   iconBtn: { backgroundColor: '#1A1A1A', padding: 12, borderRadius: 50 },
   
-  streakCard: { backgroundColor: 'linear-gradient(135deg, #FF007F 0%, #7000FF 100%)', borderRadius: 24, padding: 25, marginBottom: 25, overflow: 'hidden', borderWidth: 1, borderColor: '#333' },
+  streakCard: { borderRadius: 24, padding: 25, marginBottom: 25, overflow: 'hidden', borderWidth: 1, borderColor: '#333' },
   streakInfo: { flexDirection: 'row', alignItems: 'center', gap: 20 },
-  streakNumber: { color: '#FF007F', fontSize: 64, fontWeight: '900', lineHeight: 70 },
+  streakNumber: { color: '#FFF', fontSize: 64, fontWeight: '900', lineHeight: 70 },
   streakTitle: { color: '#FFF', fontSize: 22, fontWeight: 'bold', marginBottom: 4 },
   streakSub: { color: '#CCC', fontSize: 14 },
 

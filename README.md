@@ -1,111 +1,100 @@
-# STREVO - Habit & Fitness Tracking MVP
+# STREVO - Premium Habit & Fitness Tracking
 
-STREVO is a minimalist habit and fitness tracking app focused on tracking workout sessions and generating premium, shareable social stories automatically.
+STREVO is a high-impact, motivational habit tracking application designed to transform the workout experience. Built for consistency, it features dynamic storytelling, visual streaks, and a premium dark-mode aesthetic.
 
-## Tech Stack
-- **Mobile**: React Native, Expo, TypeScript, Zustand, React Navigation.
-- **Backend**: NestJS, Prisma, PostgreSQL, JWT Authentication.
-- **Image Generation**: Node Canvas (server-side generation).
+## ✨ Core Features
+
+- **Dynamic Home Dashboard**: Real-time motivational headers, premium streak visualization, and weekly activity progress.
+- **Hierarchical Workout Tracking**: Fast and fluid workout logging with a two-level selection system (Category → Subcategory).
+- **Social-Ready Stories**: Programmatic 1080x1920 image generation for social sharing, featuring dynamic phrases, workout stats, and optional user photo composition.
+- **Interactive Calendar & History**: A complete month-view grid highlighting workout consistency and providing detailed session breakdowns.
+- **Smart Timer**: Persistent, timestamp-based background timer that remains accurate even if the app is minimized.
+- **Gamified Engagement**: Streak-based rewards and human-centric motivational copy throughout the user journey.
+
+## 🛠 Tech Stack
+
+### Mobile (Expo)
+- **Framework**: React Native with Expo.
+- **State Management**: Zustand & AsyncStorage.
+- **Navigation**: React Navigation (Stack).
+- **Media**: Expo Image Picker, Camera, Media Library, and Sharing APIs.
+- **Icons**: Lucide React Native.
+
+### Backend (NestJS)
+- **Core**: NestJS (Node.js framework).
+- **Database**: SQLite (Development) / PostgreSQL (Production) via Prisma ORM.
+- **Authentication**: JWT Strategy with Passport.
+- **Graphics**: Node Canvas for high-performance server-side image generation.
 
 ---
 
-## 🚀 Running Locally
+## 🚀 Getting Started
 
 ### Prerequisites
-1. **Node.js** (v18+)
-2. **PostgreSQL** database (Local or Supabase/Neon).
+- **Node.js** (v18+)
+- **NPM** or **Yarn**
+- **Expo Go** app on your physical device (optional but recommended)
 
-### Backend Setup
-1. Open terminal and navigate to \`backend\` directory:
-   \`\`\`bash
+### 1. Project Initialization
+At the root of the project, run:
+```bash
+npm install
+```
+This will automatically install dependencies for both the `backend` and `mobile` folders.
+
+### 2. Backend Setup
+1. Navigate to the `backend` folder:
+   ```bash
    cd backend
-   \`\`\`
-2. Install dependencies:
-   \`\`\`bash
-   npm install
-   \`\`\`
-3. Create a \`.env\` file in the \`backend\` directory and add your Postgres URL:
-   \`\`\`env
-   DATABASE_URL="postgresql://user:password@localhost:5432/strevo"
-   \`\`\`
-4. Run Prisma Migrations:
-   \`\`\`bash
+   ```
+2. Set up your environment:
+   - Create a `.env` file (see `.env.example`).
+   - SQLite is used by default for rapid development.
+3. Initialize the database:
+   ```bash
    npx prisma migrate dev --name init
-   \`\`\`
-5. Start the backend server:
-   \`\`\`bash
+   ```
+4. Start the server:
+   ```bash
    npm run start:dev
-   \`\`\`
+   ```
+The API will be available at `http://localhost:3000`.
 
-The server will be running on \`http://localhost:3000\`.
-
-### Mobile App Setup
-1. Open a new terminal and navigate to \`mobile\` directory:
-   \`\`\`bash
+### 3. Mobile Setup
+1. Navigate to the `mobile` folder:
+   ```bash
    cd mobile
-   \`\`\`
-2. Install dependencies:
-   \`\`\`bash
-   npm install
-   \`\`\`
-3. Start the Expo development server:
-   \`\`\`bash
+   ```
+2. Update the API connection:
+   - Edit `src/config/api.ts` and set the `API_URL` to your machine's **local IP address** (e.g., `http://192.168.1.5:3000`) so your physical device can connect to the local server.
+3. Start the development server:
+   ```bash
    npx expo start
-   \`\`\`
-4. Press \`a\` to open on Android emulator, or \`i\` for iOS simulator, or scan the QR code with the Expo Go app on your physical device.
-
-**Note**: By default, the mobile app connects to \`http://10.0.2.2:3000\` (which is localhost for Android Emulators). If you're testing on an iOS simulator or a physical device, update \`API_URL\` in \`mobile/src/config/api.ts\` to your machine's local IP address (e.g., \`http://192.168.1.5:3000\`).
+   ```
+4. Scan the QR code with **Expo Go**.
 
 ---
 
-## 🌐 Deployment Steps
+## 🌐 Deployment
 
-### Backend Deployment (Railway / Render)
-1. Push your code to GitHub.
-2. Go to [Railway.app](https://railway.app/) or [Render.com](https://render.com/).
-3. Create a new PostgreSQL database service.
-4. Create a new Web Service and link your GitHub repository.
-5. Set the following Environment Variables in the service settings:
-   - \`DATABASE_URL\` (URL to the Postgres DB you just created)
-   - \`PORT\` (usually handled automatically by Railway/Render, but good to know)
-6. Set the Build Command:
-   \`\`\`bash
-   npm install && npx prisma generate && npm run build
-   \`\`\`
-7. Set the Start Command:
-   \`\`\`bash
-   npm run start:prod
-   \`\`\`
-   *(Note: Ensure you run migrations on deployment. You might need to add \`npx prisma migrate deploy\` before starting the server).*
+### Backend (Railway/Render)
+- Link your GitHub repository.
+- Set `DATABASE_URL` to a production PostgreSQL instance.
+- Build Command: `npm install && npx prisma generate && npm run build`
+- Start Command: `npx prisma migrate deploy && npm run start:prod`
 
-### Mobile App Deployment (Expo EAS)
-1. Install EAS CLI:
-   \`\`\`bash
-   npm install -g eas-cli
-   \`\`\`
-2. Login to Expo:
-   \`\`\`bash
-   eas login
-   \`\`\`
-3. Configure the project:
-   \`\`\`bash
-   eas build:configure
-   \`\`\`
-4. Update \`API_URL\` in \`mobile/src/config/api.ts\` to point to your deployed backend URL.
-5. Build for Android:
-   \`\`\`bash
-   eas build -p android --profile preview
-   \`\`\`
-6. Build for iOS:
-   \`\`\`bash
-   eas build -p ios --profile preview
-   \`\`\`
+### Mobile (EAS)
+- Install EAS CLI: `npm install -g eas-cli`
+- Update `API_URL` to your production endpoint.
+- Build your distribution: `eas build -p [android|ios] --profile preview`
 
 ---
 
-## 💡 Architecture & Implementation Details
-- **Clean Architecture**: The NestJS backend separates concerns into modules, services, and controllers.
-- **Background Timer**: The active workout's start time is persisted using Zustand and AsyncStorage, allowing the timer to continue calculating even if the app closes.
-- **Streaks**: A server-side cron or per-workout check mechanism. Currently calculated accurately at the time of workout submission in the \`StreaksService\`.
-- **Premium Stories**: The backend uses \`canvas\` to programmatically generate a beautiful 1080x1920 PNG image. Various themes are implemented (Dark Minimal, Neon Fitness, Clean White).
-- **Share Flow**: On the mobile app, when generating a story, the app fetches the URL, downloads it using \`expo-file-system\`, and invokes the native share sheet with \`expo-sharing\`.
+## 💡 Implementation Highlights
+- **Server-Side Rendering (SSR) for Media**: STREVO doesn't just overlay text; it uses `Node Canvas` on the backend to bake stats and user photos into a high-quality PNG, ensuring branding consistency across all platforms.
+- **Consistency Engine**: The `StreaksService` calculates active streaks in real-time during workout submission, ensuring the user's progress is always up-to-date.
+- **Zero-Latency Timer**: By calculating duration based on start timestamps rather than a simple interval counter, the app remains reliable even under OS-level process suspension.
+
+---
+
+Built with ❤️ by the STREVO Team.
