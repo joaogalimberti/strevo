@@ -73,21 +73,40 @@ strevo/
 | Comando | Descrição |
 |---------|-----------|
 | `npm run dev` | Inicia o Frontend Web na porta 5173 |
-| `npm run build` | Faz o build de produção do frontend em `frontend/dist` |
+| `npm run build` | Compila o build de produção em `frontend/dist` |
+| `npm run deploy` | Publica o build diretamente no GitHub Pages via branch `gh-pages` |
 | `npm run dev:backend` | Inicia a API NestJS em modo de desenvolvimento |
 | `npm run dev:mobile` | Inicia o app mobile Expo |
 
 ---
 
-## 🚀 Como fazer Deploy no Portfólio (Vercel / Netlify / GitHub Pages)
+## 🌐 Como Colocar no Ar (GitHub Pages / Vercel / Netlify)
 
-O frontend foi construído em Vite e pode ser deployado gratuitamente em segundos:
-1. Conecte o repositório no [Vercel](https://vercel.com) ou [Netlify](https://netlify.com).
-2. Configure:
-   - **Root Directory**: `frontend`
-   - **Build Command**: `npm run build`
-   - **Output Directory**: `dist`
-3. Pronto! Seu link estará público para qualquer recrutador ou cliente acessar instantaneamente.
+### 1. GitHub Pages (100% Automático via GitHub Actions — Recomendado)
+O repositório já inclui o workflow `.github/workflows/deploy.yml`:
+1. Suba as alterações para o GitHub:
+   ```bash
+   git add .
+   git commit -m "feat: configure github pages deployment"
+   git push origin main
+   ```
+2. No seu repositório no GitHub, acerte a configuração de Pages:
+   - Acesse **Settings** > **Pages**
+   - Em **Build and deployment > Source**, selecione: **GitHub Actions**
+3. O GitHub compilará automaticamente a pasta `frontend` e publicará o site em:
+   **`https://joaogalimberti.github.io/strevo/`**
+
+### 2. GitHub Pages (Alternativa via comando `npm run deploy`)
+Se preferir usar a branch `gh-pages`:
+```bash
+npm run deploy
+```
+E em **Settings** > **Pages**, selecione a branch `gh-pages` e pasta `/ (root)`.
+
+### 3. Vercel ou Netlify
+1. Conecte o repositório.
+2. Defina **Root Directory**: `frontend`.
+3. O build (`npm run build`) e output (`dist`) já estão configurados.
 
 ---
 
