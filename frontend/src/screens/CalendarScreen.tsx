@@ -46,6 +46,7 @@ export default function CalendarScreen() {
   );
 
   const monthName = currentDate.toLocaleString('en-US', { month: 'long', year: 'numeric' });
+  const monthLong = currentDate.toLocaleString('en-US', { month: 'long' });
   const weekDays = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
 
   const filteredWorkouts = selectedDay
@@ -156,7 +157,7 @@ export default function CalendarScreen() {
       <section className="timeline-section anim-fade-up" style={{ animationDelay: '0.08s' }}>
         <div className="timeline-header-row">
           <span className="section-label" style={{ margin: 0 }}>
-            {selectedDay ? `Sessions on ${monthName.split(' ')[0]} ${selectedDay}` : `All Sessions (${filteredWorkouts.length})`}
+            {selectedDay ? `Sessions on ${monthLong} ${selectedDay}` : `All Sessions (${filteredWorkouts.length})`}
           </span>
           {selectedDay && (
             <button className="clear-filter-btn" onClick={() => setSelectedDay(null)}>

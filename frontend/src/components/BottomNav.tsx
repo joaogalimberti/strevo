@@ -26,7 +26,13 @@ export default function BottomNav() {
               id={`nav-${view}`}
               aria-current={isActive ? 'page' : undefined}
             >
-              <Icon size={20} strokeWidth={isActive ? 2.4 : 1.8} className="nav-icon" />
+              {/* Active indicator line on top */}
+              <span className="nav-indicator" aria-hidden="true" />
+              <Icon
+                size={22}
+                strokeWidth={isActive ? 2.2 : 1.6}
+                className="nav-icon"
+              />
               <span className="nav-tab-label">{label}</span>
             </button>
           );
