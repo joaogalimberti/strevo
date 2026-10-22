@@ -1,0 +1,246 @@
+.finish-screen {
+  padding-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.finish-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.finish-nav-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* Stats Card */
+.finish-stats-card {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+}
+
+.stat-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.stat-label-wrap {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--text-tertiary);
+}
+
+.stat-digits {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.stat-digits span {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.stat-digits small {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-tertiary);
+}
+
+.stat-sep {
+  width: 1px;
+  height: 40px;
+  background: var(--border-subtle);
+}
+
+/* Discipline List */
+.discipline-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.discipline-chip {
+  padding: 14px 16px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.discipline-chip.active {
+  background: var(--bg-surface-elevated);
+  border-color: var(--border-highlight);
+  color: var(--text-primary);
+}
+
+/* Target Grid */
+.target-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.target-pill {
+  padding: 8px 14px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  color: var(--text-tertiary);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.target-pill.active {
+  background: var(--text-primary);
+  color: #08080a;
+  border-color: var(--text-primary);
+  font-weight: 700;
+}
+
+/* RPE Slider */
+.rpe-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.rpe-score {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--accent-champagne);
+}
+
+.luxury-slider {
+  width: 100%;
+  -webkit-appearance: none;
+  height: 6px;
+  background: var(--bg-surface-elevated);
+  border-radius: 3px;
+  outline: none;
+}
+
+.luxury-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--text-primary);
+  cursor: pointer;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.6);
+  border: 2px solid #08080a;
+}
+
+.rpe-scales {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  margin-top: 6px;
+}
+
+/* Photo Attachment */
+.photo-preview-wrap {
+  position: relative;
+  width: 100%;
+  height: 120px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: 10px;
+  border: 1px solid var(--border-medium);
+}
+
+.photo-preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(1.05) brightness(0.9);
+}
+
+.photo-clear-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid var(--border-medium);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.preset-strip {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+}
+
+.preset-thumb {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
+  flex-shrink: 0;
+  padding: 0;
+  background: var(--bg-surface);
+  transition: all 0.2s ease;
+}
+
+.preset-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.preset-thumb.active {
+  border-color: var(--text-primary);
+  transform: scale(0.96);
+}
+
+.upload-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  color: var(--text-secondary);
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.finish-submit-wrap {
+  margin-top: 6px;
+}

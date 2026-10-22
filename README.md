@@ -1,100 +1,94 @@
-# STREVO - Premium Habit & Fitness Tracking
+# STREVO — Consistency is Your Edge 🔥
 
-STREVO is a high-impact, motivational habit tracking application designed to transform the workout experience. Built for consistency, it features dynamic storytelling, visual streaks, and a premium dark-mode aesthetic.
+STREVO é um aplicativo de alta performance e motivação para registro de treinos e consistência física. Projetado com estética dark-mode futurista, storytelling dinâmico, estatísticas gamificadas e geração de stories para redes sociais.
 
-## ✨ Core Features
-
-- **Dynamic Home Dashboard**: Real-time motivational headers, premium streak visualization, and weekly activity progress.
-- **Hierarchical Workout Tracking**: Fast and fluid workout logging with a two-level selection system (Category → Subcategory).
-- **Social-Ready Stories**: Programmatic 1080x1920 image generation for social sharing, featuring dynamic phrases, workout stats, and optional user photo composition.
-- **Interactive Calendar & History**: A complete month-view grid highlighting workout consistency and providing detailed session breakdowns.
-- **Smart Timer**: Persistent, timestamp-based background timer that remains accurate even if the app is minimized.
-- **Gamified Engagement**: Streak-based rewards and human-centric motivational copy throughout the user journey.
-
-## 🛠 Tech Stack
-
-### Mobile (Expo)
-- **Framework**: React Native with Expo.
-- **State Management**: Zustand & AsyncStorage.
-- **Navigation**: React Navigation (Stack).
-- **Media**: Expo Image Picker, Camera, Media Library, and Sharing APIs.
-- **Icons**: Lucide React Native.
-
-### Backend (NestJS)
-- **Core**: NestJS (Node.js framework).
-- **Database**: SQLite (Development) / PostgreSQL (Production) via Prisma ORM.
-- **Authentication**: JWT Strategy with Passport.
-- **Graphics**: Node Canvas for high-performance server-side image generation.
+O repositório conta agora com uma **versão Web completa e responsiva** (pensada em mobile com shell de celular realista para desktop), ideal para **apresentação em portfólio**, rodando 100% no navegador sem dependência obrigatória de banco ou servidor externo.
 
 ---
 
-## 🚀 Getting Started
+## ⚡ Inicialização Rápida (Recomendado para Portfólio)
 
-### Prerequisites
-- **Node.js** (v18+)
-- **NPM** or **Yarn**
-- **Expo Go** app on your physical device (optional but recommended)
+Na raiz do projeto, basta rodar:
 
-### 1. Project Initialization
-At the root of the project, run:
 ```bash
-npm install
+npm run dev
 ```
-This will automatically install dependencies for both the `backend` and `mobile` folders.
 
-### 2. Backend Setup
-1. Navigate to the `backend` folder:
-   ```bash
-   cd backend
-   ```
-2. Set up your environment:
-   - Create a `.env` file (see `.env.example`).
-   - SQLite is used by default for rapid development.
-3. Initialize the database:
-   ```bash
-   npx prisma migrate dev --name init
-   ```
-4. Start the server:
-   ```bash
-   npm run start:dev
-   ```
-The API will be available at `http://localhost:3000`.
-
-### 3. Mobile Setup
-1. Navigate to the `mobile` folder:
-   ```bash
-   cd mobile
-   ```
-2. Update the API connection:
-   - Edit `src/config/api.ts` and set the `API_URL` to your machine's **local IP address** (e.g., `http://192.168.1.5:3000`) so your physical device can connect to the local server.
-3. Start the development server:
-   ```bash
-   npx expo start
-   ```
-4. Scan the QR code with **Expo Go**.
+Abra no navegador em: **`http://localhost:5173`**
 
 ---
 
-## 🌐 Deployment
+## 📱 Estrutura do Projeto
 
-### Backend (Railway/Render)
-- Link your GitHub repository.
-- Set `DATABASE_URL` to a production PostgreSQL instance.
-- Build Command: `npm install && npx prisma generate && npm run build`
-- Start Command: `npx prisma migrate deploy && npm run start:prod`
-
-### Mobile (EAS)
-- Install EAS CLI: `npm install -g eas-cli`
-- Update `API_URL` to your production endpoint.
-- Build your distribution: `eas build -p [android|ios] --profile preview`
+```
+strevo/
+├── frontend/        # Web App em React + TypeScript + Vite (Portfolio Ready)
+├── backend/         # API em NestJS + Prisma ORM (SQLite / PostgreSQL)
+├── mobile/          # App Nativo em React Native com Expo
+└── package.json     # Orquestrador com scripts simplificados
+```
 
 ---
 
-## 💡 Implementation Highlights
-- **Server-Side Rendering (SSR) for Media**: STREVO doesn't just overlay text; it uses `Node Canvas` on the backend to bake stats and user photos into a high-quality PNG, ensuring branding consistency across all platforms.
-- **Consistency Engine**: The `StreaksService` calculates active streaks in real-time during workout submission, ensuring the user's progress is always up-to-date.
-- **Zero-Latency Timer**: By calculating duration based on start timestamps rather than a simple interval counter, the app remains reliable even under OS-level process suspension.
+## ✨ Funcionalidades do Frontend Web
+
+- **📱 Phone Shell Realista**: Em telas de desktop, simula um iPhone com dynamic notch e status bar em tempo real. Em dispositivos móveis, ocupa a tela inteira com máxima imersão.
+- **🔐 Auth & Onboarding**: Login e Registro com animações, demo mode instantâneo (com 1 clique) e métricas globais de preview.
+- **🏠 Dynamic Dashboard**:
+  - Streak contador animado com anel de consistência.
+  - Tracker de progresso semanal (Seg a Dom) com indicadores de dias concluídos.
+  - Card de última sessão com detalhes de categoria e tempo.
+  - Frases motivacionais rotativas.
+  - Estatísticas de resumo rápido.
+- **⏱️ Active Workout Session**:
+  - Timer de alta precisão com anel de pulso svg.
+  - Frases de foco e mentalidade de treino a cada intervalo.
+  - Contador de minutos, calorias estimadas e ritmo.
+- **✅ Finish & Log Workout**:
+  - Seleção por categoria esportiva (Gym, Running, Cycling, Yoga, HIIT, Calistenia).
+  - Subcategorias de grupos musculares (Chest, Back, Legs, Shoulders, Arms, etc.).
+  - Seletor de intensidade com cálculo dinâmico de calorias.
+  - Upload de foto pessoal ou escolha de fotos fitness predefinidas de alta qualidade.
+  - Campo de anotações do atleta.
+- **🎨 HTML5 Canvas 1080x1920 Story Generator**:
+  - Renderizador em canvas de stories em alta resolução (9:16 - 1080x1920) direto no navegador!
+  - 4 temas visuais: *Neon Cyber*, *Obsidian Minimal*, *Solar Flame* e *Clean White*.
+  - Composição com a foto do usuário, dados do treino, dia do streak e @username.
+  - **Download 1-Clique em PNG** de alta resolução e suporte a compartilhamento nativo.
+- **📅 Interactive Calendar & History**:
+  - Navegação entre meses com grid interativo.
+  - Dias com treino destacados com glow neon.
+  - Modal com detalhamento completo da sessão, calorias e anotações.
+  - Histórico cronológico de atividades.
+- **👤 Athlete Profile & Gamification**:
+  - Nível do Atleta (Lv. XP) com barra de progressão de tier.
+  - Sistema de Conquistas e Badges desbloqueáveis (*7-Day Warrior*, *Iron Discipline*, etc.).
+  - Resumo de métricas totais (Workouts, Horas treinadas, Total de calorias).
+  - Logout e alternância de contas.
 
 ---
 
-Built with ❤️ by the STREVO Team.
+## 🛠 Comandos Disponíveis
+
+| Comando | Descrição |
+|---------|-----------|
+| `npm run dev` | Inicia o Frontend Web na porta 5173 |
+| `npm run build` | Faz o build de produção do frontend em `frontend/dist` |
+| `npm run dev:backend` | Inicia a API NestJS em modo de desenvolvimento |
+| `npm run dev:mobile` | Inicia o app mobile Expo |
+
+---
+
+## 🚀 Como fazer Deploy no Portfólio (Vercel / Netlify / GitHub Pages)
+
+O frontend foi construído em Vite e pode ser deployado gratuitamente em segundos:
+1. Conecte o repositório no [Vercel](https://vercel.com) ou [Netlify](https://netlify.com).
+2. Configure:
+   - **Root Directory**: `frontend`
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `dist`
+3. Pronto! Seu link estará público para qualquer recrutador ou cliente acessar instantaneamente.
+
+---
+
+Feito com dedicação para o ecossistema **STREVO**.

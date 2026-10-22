@@ -1,16 +1,14 @@
 {
   "name": "strevo-root",
   "version": "1.0.0",
-  "description": "STREVO MVP Root",
+  "description": "STREVO - Premium Habit & Fitness Tracking",
   "scripts": {
-    "postinstall": "npm run install:backend && npm run install:mobile",
-    "install:backend": "cd backend && npm install",
-    "install:mobile": "cd mobile && npm install",
-    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:mobile\"",
-    "dev:backend": "cd backend && npm run start:dev",
-    "dev:mobile": "cd mobile && npx expo start"
-  },
-  "devDependencies": {
-    "concurrently": "^8.2.2"
+    "dev": "npm --prefix frontend run dev",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "dev:web": "npm --prefix frontend run dev",
+    "dev:backend": "npm --prefix backend run start:dev",
+    "dev:mobile": "npm --prefix mobile run start",
+    "build": "npm --prefix frontend run build",
+    "build:frontend": "npm --prefix frontend run build"
   }
 }
