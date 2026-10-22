@@ -1,113 +1,93 @@
-# STREVO — Consistency is Your Edge 🔥
+<div align="center">
 
-STREVO é um aplicativo de alta performance e motivação para registro de treinos e consistência física. Projetado com estética dark-mode futurista, storytelling dinâmico, estatísticas gamificadas e geração de stories para redes sociais.
+# STREVO
 
-O repositório conta agora com uma **versão Web completa e responsiva** (pensada em mobile com shell de celular realista para desktop), ideal para **apresentação em portfólio**, rodando 100% no navegador sem dependência obrigatória de banco ou servidor externo.
+**Consistency is your edge.**
 
----
+Registre treinos, mantenha o streak e transforme cada sessão em um story.
 
-## ⚡ Inicialização Rápida (Recomendado para Portfólio)
+<br />
 
-Na raiz do projeto, basta rodar:
+[![Demo](https://img.shields.io/badge/demo-online-00F5A0?style=for-the-badge&logo=githubpages&logoColor=black)](https://joaogalimberti.github.io/strevo/)
+[![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev)
+
+<br />
+
+[**Ver demo**](https://joaogalimberti.github.io/strevo/) · [Início rápido](#-início-rápido) · [Funcionalidades](#-funcionalidades) · [Deploy](#-deploy)
+
+</div>
+
+<br />
+
+## ◆ Sobre
+
+STREVO é um app de alta performance para registro de treinos e consistência física, com estética **dark-mode futurista**, estatísticas gamificadas e geração de stories para redes sociais.
+
+A versão web é **100% client-side**, responsiva e pensada para portfólio: no desktop, roda dentro de um shell realista de iPhone; no celular, ocupa a tela inteira. Sem banco, sem servidor.
+
+<br />
+
+## ◆ Início rápido
 
 ```bash
 npm run dev
 ```
 
-Abra no navegador em: **`http://localhost:5173`**
+Abra **http://localhost:5173** e use o **demo mode** para entrar com 1 clique.
 
----
+<br />
 
-## 📱 Estrutura do Projeto
+## ◆ Funcionalidades
+
+| | Recurso | O que entrega |
+|:-:|---|---|
+| 🏠 | **Dashboard** | Streak animado com anel de consistência, progresso semanal (Seg–Dom), última sessão e frases motivacionais |
+| ⏱️ | **Sessão ativa** | Timer de alta precisão com anel de pulso em SVG, calorias estimadas, ritmo e frases de foco |
+| ✅ | **Registro de treino** | Categorias (Gym, Running, Cycling, Yoga, HIIT, Calistenia), grupos musculares, intensidade com cálculo de calorias, foto e anotações |
+| 🎨 | **Story Generator** | Canvas **1080×1920 (9:16)** com 4 temas, foto, dados do treino, streak e @username. Download em PNG e compartilhamento nativo |
+| 📅 | **Calendário** | Navegação por mês, dias treinados com glow neon, modal de detalhes e histórico cronológico |
+| 👤 | **Perfil** | Nível do atleta com barra de XP, conquistas e badges, métricas totais e troca de conta |
+| 🔐 | **Auth & Onboarding** | Login, registro e demo instantâneo |
+
+<details>
+<summary><b>Temas do Story Generator</b></summary>
+
+<br />
+
+| Tema | Estilo |
+|---|---|
+| **Neon Cyber** | Contraste alto, brilho neon |
+| **Obsidian Minimal** | Escuro e limpo |
+| **Solar Flame** | Tons quentes e energéticos |
+| **Clean White** | Claro e editorial |
+
+</details>
+
+<br />
+
+## ◆ Estrutura
 
 ```
 strevo/
-├── frontend/        # Web App em React + TypeScript + Vite (Portfolio Ready)
-├── backend/         # API em NestJS + Prisma ORM (SQLite / PostgreSQL)
-├── mobile/          # App Nativo em React Native com Expo
-└── package.json     # Orquestrador com scripts simplificados
+├── frontend/    React + TypeScript + Vite   → web app (portfólio)
+├── backend/     NestJS + Prisma             → API (SQLite / PostgreSQL)
+├── mobile/      React Native + Expo         → app nativo
+└── package.json                             → scripts orquestradores
 ```
 
----
+<br />
 
-## ✨ Funcionalidades do Frontend Web
-
-- **📱 Phone Shell Realista**: Em telas de desktop, simula um iPhone com dynamic notch e status bar em tempo real. Em dispositivos móveis, ocupa a tela inteira com máxima imersão.
-- **🔐 Auth & Onboarding**: Login e Registro com animações, demo mode instantâneo (com 1 clique) e métricas globais de preview.
-- **🏠 Dynamic Dashboard**:
-  - Streak contador animado com anel de consistência.
-  - Tracker de progresso semanal (Seg a Dom) com indicadores de dias concluídos.
-  - Card de última sessão com detalhes de categoria e tempo.
-  - Frases motivacionais rotativas.
-  - Estatísticas de resumo rápido.
-- **⏱️ Active Workout Session**:
-  - Timer de alta precisão com anel de pulso svg.
-  - Frases de foco e mentalidade de treino a cada intervalo.
-  - Contador de minutos, calorias estimadas e ritmo.
-- **✅ Finish & Log Workout**:
-  - Seleção por categoria esportiva (Gym, Running, Cycling, Yoga, HIIT, Calistenia).
-  - Subcategorias de grupos musculares (Chest, Back, Legs, Shoulders, Arms, etc.).
-  - Seletor de intensidade com cálculo dinâmico de calorias.
-  - Upload de foto pessoal ou escolha de fotos fitness predefinidas de alta qualidade.
-  - Campo de anotações do atleta.
-- **🎨 HTML5 Canvas 1080x1920 Story Generator**:
-  - Renderizador em canvas de stories em alta resolução (9:16 - 1080x1920) direto no navegador!
-  - 4 temas visuais: *Neon Cyber*, *Obsidian Minimal*, *Solar Flame* e *Clean White*.
-  - Composição com a foto do usuário, dados do treino, dia do streak e @username.
-  - **Download 1-Clique em PNG** de alta resolução e suporte a compartilhamento nativo.
-- **📅 Interactive Calendar & History**:
-  - Navegação entre meses com grid interativo.
-  - Dias com treino destacados com glow neon.
-  - Modal com detalhamento completo da sessão, calorias e anotações.
-  - Histórico cronológico de atividades.
-- **👤 Athlete Profile & Gamification**:
-  - Nível do Atleta (Lv. XP) com barra de progressão de tier.
-  - Sistema de Conquistas e Badges desbloqueáveis (*7-Day Warrior*, *Iron Discipline*, etc.).
-  - Resumo de métricas totais (Workouts, Horas treinadas, Total de calorias).
-  - Logout e alternância de contas.
-
----
-
-## 🛠 Comandos Disponíveis
+## ◆ Comandos
 
 | Comando | Descrição |
-|---------|-----------|
-| `npm run dev` | Inicia o Frontend Web na porta 5173 |
-| `npm run build` | Compila o build de produção em `frontend/dist` |
-| `npm run deploy` | Publica o build diretamente no GitHub Pages via branch `gh-pages` |
-| `npm run dev:backend` | Inicia a API NestJS em modo de desenvolvimento |
-| `npm run dev:mobile` | Inicia o app mobile Expo |
+|---|---|
+| `npm run dev` | Inicia o frontend na porta `5173` |
+| `npm run build` | Gera o build de produção em `frontend/dist` |
+| `npm run deploy` | Publica o build na branch `gh-pages` |
+| `npm run dev:backend` | Inicia a API NestJS em modo dev |
+| `npm run dev:mobile` | Inicia o app mobile com Expo |
 
----
+<br />
 
-## 🌐 Como Colocar no Ar (GitHub Pages / Vercel / Netlify)
-
-### 1. GitHub Pages (100% Automático via GitHub Actions — Recomendado)
-O repositório já inclui o workflow `.github/workflows/deploy.yml`:
-1. Suba as alterações para o GitHub:
-   ```bash
-   git add .
-   git commit -m "feat: configure github pages deployment"
-   git push origin main
-   ```
-2. No seu repositório no GitHub, acerte a configuração de Pages:
-   - Acesse **Settings** > **Pages**
-   - Em **Build and deployment > Source**, selecione: **GitHub Actions**
-3. O GitHub compilará automaticamente a pasta `frontend` e publicará o site em:
-   **`https://joaogalimberti.github.io/strevo/`**
-
-### 2. GitHub Pages (Alternativa via comando `npm run deploy`)
-Se preferir usar a branch `gh-pages`:
-```bash
-npm run deploy
-```
-E em **Settings** > **Pages**, selecione a branch `gh-pages` e pasta `/ (root)`.
-
-### 3. Vercel ou Netlify
-1. Conecte o repositório.
-2. Defina **Root Directory**: `frontend`.
-3. O build (`npm run build`) e output (`dist`) já estão configurados.
-
----
-
-Feito com dedicação para o ecossistema **STREVO**.
