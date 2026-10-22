@@ -4,7 +4,7 @@
 
 **Consistency is your edge.**
 
-Registre treinos, mantenha o streak e transforme cada sessão em um story.
+Log workouts, keep your streak alive, and turn every session into a story.
 
 <br />
 
@@ -15,79 +15,79 @@ Registre treinos, mantenha o streak e transforme cada sessão em um story.
 
 <br />
 
-[**Ver demo**](https://joaogalimberti.github.io/strevo/) · [Início rápido](#-início-rápido) · [Funcionalidades](#-funcionalidades) · [Deploy](#-deploy)
+[**Live demo**](https://joaogalimberti.github.io/strevo/) · [Quick start](#-quick-start) · [Features](#-features) · [Deploy](#-deploy)
 
 </div>
 
 <br />
 
-## ◆ Sobre
+## ◆ About
 
-STREVO é um app de alta performance para registro de treinos e consistência física, com estética **dark-mode futurista**, estatísticas gamificadas e geração de stories para redes sociais.
+STREVO is a high-performance app for workout tracking and fitness consistency, featuring a **futuristic dark-mode aesthetic**, gamified stats, and social media story generation.
 
-A versão web é **100% client-side**, responsiva e pensada para portfólio: no desktop, roda dentro de um shell realista de iPhone; no celular, ocupa a tela inteira. Sem banco, sem servidor.
+The web version is **100% client-side**, responsive, and built with portfolios in mind: on desktop it runs inside a realistic iPhone shell; on mobile it goes full screen. No database, no server required.
 
 <br />
 
-## ◆ Início rápido
+## ◆ Quick start
 
 ```bash
 npm run dev
 ```
 
-Abra **http://localhost:5173** e use o **demo mode** para entrar com 1 clique.
+Open **http://localhost:5173** and use **demo mode** to jump in with one click.
 
 <br />
 
-## ◆ Funcionalidades
+## ◆ Features
 
-| | Recurso | O que entrega |
+| | Feature | What it delivers |
 |:-:|---|---|
-| 🏠 | **Dashboard** | Streak animado com anel de consistência, progresso semanal (Seg–Dom), última sessão e frases motivacionais |
-| ⏱️ | **Sessão ativa** | Timer de alta precisão com anel de pulso em SVG, calorias estimadas, ritmo e frases de foco |
-| ✅ | **Registro de treino** | Categorias (Gym, Running, Cycling, Yoga, HIIT, Calistenia), grupos musculares, intensidade com cálculo de calorias, foto e anotações |
-| 🎨 | **Story Generator** | Canvas **1080×1920 (9:16)** com 4 temas, foto, dados do treino, streak e @username. Download em PNG e compartilhamento nativo |
-| 📅 | **Calendário** | Navegação por mês, dias treinados com glow neon, modal de detalhes e histórico cronológico |
-| 👤 | **Perfil** | Nível do atleta com barra de XP, conquistas e badges, métricas totais e troca de conta |
-| 🔐 | **Auth & Onboarding** | Login, registro e demo instantâneo |
+| 🏠 | **Dashboard** | Animated streak with consistency ring, weekly progress (Mon–Sun), last session card, and rotating motivational quotes |
+| ⏱️ | **Active session** | High-precision timer with SVG pulse ring, estimated calories, pace, and focus phrases |
+| ✅ | **Workout logging** | Categories (Gym, Running, Cycling, Yoga, HIIT, Calisthenics), muscle groups, intensity with dynamic calorie calculation, photo, and notes |
+| 🎨 | **Story generator** | **1080×1920 (9:16)** canvas with 4 themes, photo, workout data, streak, and @username. One-click PNG download and native sharing |
+| 📅 | **Calendar** | Month navigation, neon-glow workout days, detail modal, and chronological history |
+| 👤 | **Profile** | Athlete level with XP bar, achievements and badges, lifetime metrics, and account switching |
+| 🔐 | **Auth & onboarding** | Login, sign-up, and instant demo mode |
 
 <details>
-<summary><b>Temas do Story Generator</b></summary>
+<summary><b>Story generator themes</b></summary>
 
 <br />
 
-| Tema | Estilo |
+| Theme | Style |
 |---|---|
-| **Neon Cyber** | Contraste alto, brilho neon |
-| **Obsidian Minimal** | Escuro e limpo |
-| **Solar Flame** | Tons quentes e energéticos |
-| **Clean White** | Claro e editorial |
+| **Neon Cyber** | High contrast, neon glow |
+| **Obsidian Minimal** | Dark and clean |
+| **Solar Flame** | Warm, energetic tones |
+| **Clean White** | Light and editorial |
 
 </details>
 
 <br />
 
-## ◆ Estrutura
+## ◆ Structure
 
 ```
 strevo/
-├── frontend/    React + TypeScript + Vite   → web app (portfólio)
+├── frontend/    React + TypeScript + Vite   → web app (portfolio)
 ├── backend/     NestJS + Prisma             → API (SQLite / PostgreSQL)
-├── mobile/      React Native + Expo         → app nativo
-└── package.json                             → scripts orquestradores
+├── mobile/      React Native + Expo         → native app
+└── package.json                             → orchestration scripts
 ```
 
 <br />
 
-## ◆ Comandos
+## ◆ Commands
 
-| Comando | Descrição |
+| Command | Description |
 |---|---|
-| `npm run dev` | Inicia o frontend na porta `5173` |
-| `npm run build` | Gera o build de produção em `frontend/dist` |
-| `npm run deploy` | Publica o build na branch `gh-pages` |
-| `npm run dev:backend` | Inicia a API NestJS em modo dev |
-| `npm run dev:mobile` | Inicia o app mobile com Expo |
+| `npm run dev` | Starts the frontend on port `5173` |
+| `npm run build` | Builds for production into `frontend/dist` |
+| `npm run deploy` | Publishes the build to the `gh-pages` branch |
+| `npm run dev:backend` | Starts the NestJS API in dev mode |
+| `npm run dev:mobile` | Starts the mobile app with Expo |
 
 <br />
 
